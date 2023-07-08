@@ -1,0 +1,187 @@
+ScreenManager:
+    id: 'principal'
+    Screen:
+        name: 'menu'
+
+        MDIconButton:
+            pos_hint:{'center_x':.5,'center_y':.8}
+            icon:'account-supervisor'
+            icon_size:"75sp"
+
+
+        MDTextField:
+            id:email
+            size_hint_x:.9
+            hint_text:'Email:'
+            pos_hint:{'center_x':.5,'center_y':.6}
+        MDTextField:
+            id:senha
+            size_hint_x:.9
+            hint_text:'Senha:'
+            pos_hint:{'center_x':.5,'center_y':.5}
+
+        MDLabel:
+            size_hint_x:.9
+            halign:"center"
+            font_style:'H5'
+            text: "Bem vindo!"
+            pos_hint:{'center_x':.5,'center_y':.7}
+
+
+
+
+
+        MDRaisedButton:
+            right_action_items: [["cog", lambda x: app.callback(x)]]
+            on_release:app.dados()
+
+            text:'login'
+            size_hint_x:.9
+            pos_hint:{'center_x':.5,'center_y':.3}
+
+
+    Screen:
+        name:"second"
+        MDIconButton:
+            pos_hint:{'center_x':.5,'center_y':.8}
+            icon:'account-circle'
+            icon_size:"90sp"
+
+
+
+
+        MDLabel:
+            id:Vendedora
+            size_hint_x:.9
+            halign:"center"
+            font_style:'H5'
+            pos_hint:{'center_x':.5,'center_y':.7}
+
+
+
+        MDLabel:
+            id:Vendas
+            size_hint_x:.9
+            halign:"center"
+            font_style:'H5'
+            pos_hint:{'center_x':.5,'center_y':.6}
+
+        MDRaisedButton:
+            right_action_items: [["cog", lambda x: app.callback(x)]]
+            on_release:app.cadastro()
+
+            text:'Cadastrar vendas'
+            size_hint_x:.9
+            pos_hint:{'center_x':.5,'center_y':.5}
+
+        MDRaisedButton:
+            right_action_items: [["cog", lambda x: app.callback(x)]]
+
+            text:'Sair'
+            size_hint_x:.9
+            pos_hint:{'center_x':.5,'center_y':.4}
+
+
+
+    Screen:
+
+        name:"cadastro"
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            BoxLayout:
+                orientation:'vertical'
+                adaptive_height: True
+
+                MDLabel:
+                    size_hint_x:.9
+                    halign:"center"
+                    font_style:'H5'
+                    text: "Informações do cliente"
+                    pos_hint:{'center_x':.5,'center_y':.9}
+
+
+                MDTextField:
+                    id:cpf
+                    size_hint_x:.9
+                    hint_text:'cpf:'
+                    pos_hint:{'center_x':.5,'center_y':.8}
+                MDTextField:
+                    id:nome
+                    size_hint_x:.9
+                    hint_text:'nome:'
+                    pos_hint:{'center_x':.5,'center_y':.7}
+
+                MDLabel:
+                    size_hint_x:.9
+                    halign:"center"
+                    font_style:'H5'
+                    text: "Forma de pagamento"
+                    pos_hint:{'center_x':.5,'center_y':.6}
+
+                MDList:
+                    id: scroll
+                    pos_hint:{'center_x':.5,'center_y':.6}
+                    TwoLineAvatarIconListItem:
+                        id: mm1
+                        text: "Dinheiro"
+                        secondary_text: " "
+                        icon: "cash"
+                        IconLeftWidget:
+                            icon: "cash" #root.icon
+                        IconRightWidget:
+                            icon: "a11.png" #this is a transparent png image of 188 bytes
+                            MDCheckbox:
+                                id:c1
+                                on_active:
+                                    app.save_checked(*args,root.ids.mm1.text)
+
+                    TwoLineAvatarIconListItem:
+                        id: m1
+                        text: "Pix"
+                        secondary_text: " "
+                        icon: "cash"
+                        IconLeftWidget:
+                            icon: "cash" #root.icon
+                        IconRightWidget:
+                            icon: "a11.png" #this is a transparent png image of 188 bytes
+                            MDCheckbox:
+                                id:c2
+                                on_active:
+                                    app.save_checked(*args,root.ids.m1.text)
+
+                    TwoLineAvatarIconListItem:
+                        id: cm1
+                        text: "Cartão"
+                        secondary_text: " "
+                        icon: "credit-card"
+                        IconLeftWidget:
+                            icon: "credit-card" #root.icon
+                        IconRightWidget:
+                            icon: "a11.png" #this is a transparent png image of 188 bytes
+                            MDCheckbox:
+                                id:cc2
+                                on_active:
+                                    app.save_checked(*args,root.ids.cm1.text)
+                BoxLayout:
+                    orientation:'horizontal'
+                    spacing:10
+
+                    MDRaisedButton:
+                        text:'Voltar'
+                        size_hint_x:.9
+                        pos_hint:{'center_x':.5,'center_y':.5}
+
+                        on_release: app.voltar()
+
+                    MDRaisedButton:
+
+                        text:'Cadastrar'
+                        size_hint_x:.9
+                        pos_hint:{'center_x':.5,'center_y':.5}
+
+                        on_release: app.cadastrar()
+
+
+
+
